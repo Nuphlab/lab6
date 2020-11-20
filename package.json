@@ -1,0 +1,31 @@
+{
+	"name": "lab-6-boilerplate",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"start": "nodemon server"
+	},
+	"description": "Starter Files for lab 6",
+	"main": "server.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/BYU-ITC-210/Lab-6A.git"
+	},
+	"keywords": [],
+	"author": "BYU-ITC-210",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/BYU-ITC-210/Lab-6A/issues"
+	},
+	"homepage": "https://github.com/BYU-ITC-210/Lab-6A#readme",
+	"dependencies": {
+		"cookie-parser": "~1.4.4",
+		"debug": "~2.6.9",
+		"dotenv": "^8.2.0",
+		"express": "~4.16.1",
+		"morgan": "~1.9.1"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.2"
+	}
+}
