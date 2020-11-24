@@ -19,11 +19,18 @@
 	},
 	"homepage": "https://github.com/BYU-ITC-210/Lab-6A#readme",
 	"dependencies": {
+		"connect-mongodb-session": "^2.4.1",
 		"cookie-parser": "~1.4.4",
+		"cors": "^2.8.5",
 		"debug": "~2.6.9",
 		"dotenv": "^8.2.0",
 		"express": "~4.16.1",
-		"morgan": "~1.9.1"
+		"express-session": "^1.17.1",
+		"mongoose": "^5.10.15",
+		"morgan": "~1.9.1",
+		"passport": "^0.4.1",
+		"passport-google-oauth": "^2.0.0",
+		"tedious": "^9.2.1"
 	},
 	"devDependencies": {
 		"nodemon": "^2.0.2"
