@@ -1,6 +1,7 @@
 const express = require(`express`)
 const router = express.Router()
 const Task = require(`../models/Task`)
+const { stringify } = require("querystring")
 
 /**
  * GET: Returns one task with the task's id specified in the path
@@ -21,6 +22,8 @@ router.get(`/:id`, async (req, res) => {
 router.post('/', async (req, res) => {
 	//const task = new Task(req.body)
 	var data = req.body
+	//console.log(req.body.UserId)
+	
 	try{
 		const newTask = new Task({
 			UserId: data.UserId,
@@ -28,30 +31,54 @@ router.post('/', async (req, res) => {
 			Done: data.Done,
 			Date: data.Date,
 		})
-		await newTask.save()
-		res.send(newTask)
+		let task = await newTask.save()
+		res.status(201).send(task)
 	}catch(e){
 		console.error
 		res.status(500)
 	}
 })
-router.get('/', async (req, res) => {
-	let tasks = Task.findById(req.body.UserId)
-	res.send(tasks)
-})
-router.put('/:id', async (req, res) => {
-	let updatedTask = Task.findById(req.params.id)
-	updatedTask.UserId = req.body.UserId
-	updatedTask.Text = req.body.Text
-	updatedTask.Done = req.body.Done
-	updatedTask.Date = req.body.Date
 
-	res.send(updatedTask)
+router.get('/', async (req, res) => {
+	//var tasks = [{}]
+	Task.find({ UserId: '123'}, function (err, docs) { 
+		if (err){ 
+			console.log(err); 
+		} 
+		else{ 
+			//console.log("First function call : ", docs); 
+			//tasks = docs
+			//console.log(tasks)
+			res.send(docs)
+		} 
+	}); 
+})
+
+router.put('/:id', async (req, res) => {
+	//const id 
+	let updatedTask = Task.findByIdAndUpdate(id, { Text: req.body.Text},
+		function (err, docs) { 
+			if (err){ 
+				console.log(err) 
+			} 
+			else{ 
+				console.log("Updated User : ", docs); 
+			} 
+})
+
+	//updatedTask.UserId = req.body.UserId
+	//updatedTask.Text = req.body.Text
+	//updatedTask.Done = req.body.Done
+	//updatedTask.Date = req.body.Date
+
+	//res.send(updatedTask)
+	res.send("hit the put endpoint")
 })
 router.delete('/:id', async (req, res) => {
-	let task = Task.findById(req.body.id)
-	Task.delete(Task.findById(req.body.id))
-	res.send(task)
+	let task = Task.findByIdAndDelete(req.body.id)
+	//Task.delete(Task.findById(req.body.id))
+	//res.send(task)
+	res.send("hit the get delete endpoint")
 })
 
 module.exports = router

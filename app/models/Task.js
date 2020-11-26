@@ -4,7 +4,7 @@ This file is for creating a Mongoose Model/Schema
 
 */
 
-import mongoose from 'mongoose'
+const mongoose = require("mongoose")
 const { Schema } = mongoose
 
 let taskSchema = new Schema({
@@ -14,5 +14,5 @@ let taskSchema = new Schema({
     Date: String,
 })
 
-const Task = mongoose.model('Tasks', taskSchema)
+const Task = mongoose.model('Task', taskSchema)
 module.exports = Task

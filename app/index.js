@@ -12,11 +12,12 @@ const mysqldb = require(`./mssqldb.js`)
 
 // Here, you should require() your routers so you can use() them below
 const userRouter = require(`./routes/user`)
+const taskRouter = require(`./routes/tasks`)
 //const post = require("./routes/tasks")
-//onst get = require("./routes/tasks")
+//const get = require(`./routes/tasks`)
 //const put = require("./routes/tasks")
-//const delete = require("./routes/tasks")
-const router = require("./routes/user")
+//const _delete = require("./routes/tasks")
+//const router = require("./routes/user")
 const app = express()
 
 // These lines are provided for you.
@@ -33,10 +34,12 @@ app.use(cookieParser()) // This line says that if there are any cookies, that yo
 
 // Here is where you should assign your routers to specific routes. Make sure to authenticate() the routes that need authentication.
 app.use(`/api/v1/user`, authenticate, userRouter)
-app.use(`/api/v1/tasks`, router.post)
-app.use(`/api/v1/tasks`, router.put)
-app.use(`/api/v1/tasks`, router.get)
-app.use(`/api/v1/tasks`, router.delete)
+app.use(`/api/v1/tasks`, taskRouter)
+//app.use(`/api/v1/tasks/`, taskRouter)
+//app.use(`/api/v1/tasks/:id`, get)
+//app.use(`/api/v1/tasks/`, )
+//app.use(`/api/v1/tasks/:id`, get)
+//app.use(`/api/v1/tasks/:id`, _delete)
 
 // Finally, you should add a .get() route to your app for `/signin-google` that uses passport to authenitcate using the google strategy
 module.exports = app
