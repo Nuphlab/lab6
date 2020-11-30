@@ -40,23 +40,21 @@ router.post('/', async (req, res) => {
 })
 
 router.get('/', async (req, res) => {
-	//var tasks = [{}]
 	Task.find({ UserId: '123'}, function (err, docs) { 
 		if (err){ 
 			console.log(err); 
 		} 
 		else{ 
-			//console.log("First function call : ", docs); 
-			//tasks = docs
-			//console.log(tasks)
 			res.send(docs)
 		} 
 	}); 
 })
 
 router.put('/:id', async (req, res) => {
-	//const id 
-	let updatedTask = Task.findByIdAndUpdate(id, { Text: req.body.Text},
+	const id = req.params.id
+	console.log(id)
+	console.log(req.query.Text)
+	let updatedTask = Task.findByIdAndUpdate({_id: id}, { Text: req.query.Text},
 		function (err, docs) { 
 			if (err){ 
 				console.log(err) 
@@ -65,19 +63,19 @@ router.put('/:id', async (req, res) => {
 				console.log("Updated User : ", docs); 
 			} 
 })
-
-	//updatedTask.UserId = req.body.UserId
-	//updatedTask.Text = req.body.Text
-	//updatedTask.Done = req.body.Done
-	//updatedTask.Date = req.body.Date
-
-	//res.send(updatedTask)
 	res.send("hit the put endpoint")
 })
+
 router.delete('/:id', async (req, res) => {
-	let task = Task.findByIdAndDelete(req.body.id)
-	//Task.delete(Task.findById(req.body.id))
-	//res.send(task)
+	let id = req.params.id
+	let task = Task.findByIdAndDelete(id, function (err, docs) { 
+		if (err){ 
+			console.log(err) 
+		} 
+		else{ 
+			console.log("Deleted : ", docs); 
+		} 
+	}); 
 	res.send("hit the get delete endpoint")
 })
 
