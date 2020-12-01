@@ -51,10 +51,20 @@ router.get('/', async (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
+	let done = false
 	const id = req.params.id
-	console.log(id)
-	console.log(req.query.Text)
-	let updatedTask = Task.findByIdAndUpdate({_id: id}, { Text: req.query.Text},
+	let task = await Task.findById(id, function (err, docs) { 
+		if (err){ 
+			console.log(err); 
+		} 
+		else{ 
+			console.log("Result : ", docs.Done);
+			done = docs.Done
+		} 
+	}); 
+	done = !done
+
+	let updatedTask = await Task.findByIdAndUpdate({_id: id}, { Done: done},
 		function (err, docs) { 
 			if (err){ 
 				console.log(err) 
